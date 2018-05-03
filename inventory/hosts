@@ -1,0 +1,2 @@
+[deploy]
+s.cympfh.cc ansible_ssh_user=ubuntu
