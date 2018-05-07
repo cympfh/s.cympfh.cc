@@ -1,0 +1,11 @@
+---
+- hosts: deploy
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/date-server.git
+        dest: $HOME/git/date-server
+  roles:
+    - role: screen_deploy
+      vars:
+        name: date-server
+        shell: cd $HOME/git/date-server && npm i && node index.js --port=8000
