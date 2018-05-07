@@ -1,2 +1,6 @@
+- name: stop container
+  shell: docker ps -a | grep {{ tag }} | awk '{print "docker stop", $1}' | sh
+- name: rm container
+  shell: docker ps -a | grep {{ tag }} | awk '{print "docker rm", $1}' | sh
 - name: deploy docker
   command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }}

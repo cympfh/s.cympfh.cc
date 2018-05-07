@@ -8,4 +8,5 @@
     - port_container: 80
     - port_host: 80
   roles:
+    - docker_build
     - docker_deploy
