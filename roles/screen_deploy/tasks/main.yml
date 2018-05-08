@@ -1,4 +1,4 @@
 - name: open screen window
   command: screen -S deploy -X screen -t {{ name }} bash
-- name: {{ shell }}
+- name: "{{ shell }}"
   command: screen -S deploy -p {{ name }} -X stuff '{{ shell }}\n'
