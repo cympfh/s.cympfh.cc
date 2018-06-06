@@ -8,14 +8,8 @@
     - role: screen_deploy
       vars:
         name: tw-clean-ampeloss
-        shell: cd $HOME/git/tw-clean && bash ./tw-clean ampeloss --margin $(hour 2) --rule ".text | (startswith(\\"@\\") or startswith(\\"RT\\"))"
+        shell: cd $HOME/git/tw-clean && bash ./tw-clean ampeloss --margin $(hour 6) --rule ".text | (startswith(\\"@\\") or startswith(\\"RT\\"))"
     - role: screen_deploy
       vars:
         name: tw-clean-cympfh
-        shell: cd $HOME/git/tw-clean && bash ./tw-clean cympfh --margin $(hour 2)
-    - role: screen_deploy
-      vars:
-        name: tw-clean-cynpfh
-        shell: cd $HOME/git/tw-clean && bash ./tw-clean cynpfh --margin $(hour 2) --rule ".text | startswith(\\".\\")"
-
-
+        shell: cd $HOME/git/tw-clean && bash ./tw-clean cympfh --margin $(hour 6) --rule "((.text|startswith(\\"@\\")|not) and (.text|endswith(\\".\\")|not) and (.extended_entities.media | length) == 0)"
