@@ -1,3 +1,5 @@
+- name: close & kill window
+  command: screen -S deploy -p {{ name }} -X kill
 - name: open screen window
   command: screen -S deploy -X screen -t {{ name }} bash
 - name: "{{ shell }}"
