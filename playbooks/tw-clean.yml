@@ -15,5 +15,5 @@
         shell: cd $HOME/git/tw-clean && bash ./tw-clean cympfh --margin $(hour 2) --rule "((.text|startswith(\\"@\\")|not) and (.text|endswith(\\".\\")|not) and (.extended_entities.media | length) == 0)"
     - role: screen_deploy
       vars:
-        name: tw-clean-bunkyo
-        shell: cd $HOME/git/tw-clean && bash ./tw-clean BunkyoCivic --margin $(hour 2) --rule "((.text|startswith(\\"@\\")|not) and (.text|endswith(\\".\\")|not) and (.extended_entities.media | length) == 0)"
+        name: tw-clean-akashi
+        shell: cd $HOME/git/tw-clean && bash ./tw-clean akashi_local --margin $(hour 2) --rule "(.text|startswith(\\".\\")) or ((.text|startswith(\\"@\\")|not) and (.text|endswith(\\".\\")|not) and (.extended_entities.media | length) == 0)"
