@@ -1,0 +1,15 @@
+---
+- hosts: deploy
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/mastodon2slack.git
+        dest: $HOME/git/m2s
+    - template:
+        src: m2s.config.sh
+        dest: $HOME/git/m2s/config.sh
+        mode: '0600'
+  roles:
+    - role: screen_deploy
+      vars:
+        name: m2s
+        shell: cd $HOME/git/m2s && bash m2s
