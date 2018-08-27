@@ -1,0 +1,15 @@
+---
+- hosts: deploy
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/ampeloss.git
+        dest: $HOME/git/ampeloss
+    - template:
+        src: anime.config.sh
+        dest: $HOME/git/ampeloss/anime-notify/config.sh
+        mode: '0600'
+  roles:
+    - role: screen_deploy
+      vars:
+        name: anime-notify
+        shell: cd $HOME/git/ampeloss/anime-notify && bash main.sh
