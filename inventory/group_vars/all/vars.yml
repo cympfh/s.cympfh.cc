@@ -1,7 +1,11 @@
 slack:
   webhook: "{{ vault.slack.webhook }}"
 mastodon:
-  server: "{{ vault.mastodon.server }}"
-  username: "{{ vault.mastodon.username }}"
-  accesstoken: "{{ vault.mastodon.accesstoken }}"
-  usertoken: "{{ vault.mastodon.accesstoken }}"
+  cympfh:
+    server: "{{ vault.mastodon.cympfh.server }}"
+    accesstoken: "{{ vault.mastodon.cympfh.accesstoken }}"
+    usertoken: "{{ vault.mastodon.cympfh.accesstoken }}"
+  eliza:
+    server: "{{ vault.mastodon.eliza.server }}"
+    accesstoken: "{{ vault.mastodon.eliza.accesstoken }}"
+    usertoken: "{{ vault.mastodon.eliza.accesstoken }}"

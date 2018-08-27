@@ -1,2 +1,2 @@
-SERVER={{ mastodon.server }}
-USERTOKEN={{ mastodon.usertoken }}
+SERVER={{ mastodon.eliza.server }}
+USERTOKEN={{ mastodon.eliza.usertoken }}
