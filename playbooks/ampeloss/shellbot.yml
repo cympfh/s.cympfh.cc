@@ -1,0 +1,15 @@
+---
+- hosts: deploy
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/ampeloss.git
+        dest: $HOME/git/ampeloss
+    - template:
+        src: shellbot.config.json
+        dest: $HOME/git/ampeloss/shellbot/config.json
+        mode: '0600'
+  roles:
+    - role: screen_deploy
+      vars:
+        name: shellbot
+        shell: cd $HOME/git/ampeloss/shellbot && npm i && node ./index.js
