@@ -1,0 +1,13 @@
+---
+- hosts: deploy
+  vars:
+    - dir: $HOME/git/cympfh-search
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/cympfh-search.git
+        dest: "{{ dir }}"
+  roles:
+    - role: screen_deploy
+      vars:
+        name: search
+        shell: cd {{ dir }} && npm i && npm start
