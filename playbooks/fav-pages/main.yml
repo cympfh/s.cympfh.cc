@@ -1,0 +1,17 @@
+---
+- hosts: deploy
+  vars:
+    - dir: $HOME/git/favs-pages
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/fav-pages.git
+        dest: "{{ dir }}"
+    - template:
+        src: config.yml.j2
+        dest: "{{ dir }}/config.yml"
+        mode: '0600'
+  roles:
+    - role: screen_deploy
+      vars:
+        name: fav-pages
+        shell: cd {{ dir }} && npm i && node index.js
