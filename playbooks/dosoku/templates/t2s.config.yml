@@ -1,0 +1,4 @@
+port: 8085
+slack:
+  channel: "#timeline"
+  webhook: {{ slack.webhook }}

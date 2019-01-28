@@ -1,0 +1,19 @@
+---
+- hosts: deploy
+  pre_tasks:
+    - git:
+        repo: ssh://git@github.com/cympfh/twitter-broadcast.git
+        dest: $HOME/git/twitter-broadcast
+    - template:
+        src: tcast.config.sh
+        dest: $HOME/git/twitter-broadcast/config.sh
+        mode: '0600'
+    - template:
+        src: tcast.dest.list
+        dest: $HOME/git/twitter-broadcast/dest.list
+        mode: '0600'
+  roles:
+    - role: screen_deploy
+      vars:
+        name: tcast
+        shell: cd $HOME/git/twitter-broadcast && bash tcast
