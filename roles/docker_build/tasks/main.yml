@@ -1,13 +1,16 @@
-- name: working directory
-  file:
-    path: /tmp/docker
-    state: directory
-    force: yes
-- name: copy files
-  copy:
-    src: "{{ item }}"
-    dest: "/tmp/docker/{{ item }}"
-    force: yes
-  with_items: "{{ copy_files }}"
+- name: Docker build from local
+  import_tasks: build_local.yml
+  when: copy_files is defined
+
+- name: Docker build from remote
+  import_tasks: build_remote.yml
+  when: repo is defined
+
 - name: build container
   command: docker build -f /tmp/docker/Dockerfile -t {{ tag }} /tmp/docker
+
+- name: Remove working directory
+  file:
+    path: /tmp/docker
+    state: absent
+    force: yes

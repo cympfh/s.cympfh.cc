@@ -1,0 +1,13 @@
+---
+- hosts: deploy
+  vars:
+  - repo: https://github.com/cympfh/tw-fav-scroll
+  - tag: scroll
+  - full_command: >-
+      docker run -d --restart=always --name=scroll
+      -v ${HOME}/scroll-out:/out
+      scroll
+      sh -c "echo {{ twitter.vimdot.twurl }} | base64 -d > ~/.twurlrc; ./scroll -u vimdot -loop 0 -o /out"
+  roles:
+  - docker_build
+  - docker_deploy

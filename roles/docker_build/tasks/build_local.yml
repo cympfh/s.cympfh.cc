@@ -1,0 +1,11 @@
+- name: working directory
+  file:
+    path: /tmp/docker
+    state: directory
+    force: yes
+- name: copy files
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/docker/{{ item }}"
+    force: yes
+  with_items: "{{ copy_files }}"

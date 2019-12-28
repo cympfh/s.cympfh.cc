@@ -1,6 +1,44 @@
 - name: stop container
-  shell: docker ps -a | grep {{ tag }} | awk '{print "docker stop", $1}' | sh
+  shell: docker stop {{ tag }}
+  ignore_errors: yes
+
 - name: rm container
-  shell: docker ps -a | grep {{ tag }} | awk '{print "docker rm", $1}' | sh
-- name: deploy docker
+  shell: docker rm {{ tag }}
+  ignore_errors: yes
+
+- name: deploy docker (w/o command, as server)
   command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }}
+  when:
+  - port_host is defined
+  - port_container is defined
+  - command is not defined
+  - full_command is not defined
+
+- name: deploy docker (w/o command, as batch)
+  command: docker run -d --restart=always --name={{ tag }} {{ tag }}
+  when:
+  - port_host is not defined
+  - port_container is not defined
+  - command is not defined
+  - full_command is not defined
+
+- name: deploy docker (w/ command, as server)
+  command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }} {{ command }}
+  when:
+  - port_host is defined
+  - port_container is defined
+  - command is defined
+  - full_command is not defined
+
+- name: deploy docker (w/ command, as batch)
+  command: docker run -d --restart=always --name={{ tag }} {{ tag }} {{ command }}
+  when:
+  - port_host is not defined
+  - port_container is not defined
+  - command is defined
+  - full_command is not defined
+
+- name: deploy docker (with full-command)
+  command: "{{ full_command }}"
+  when:
+  - full_command is defined

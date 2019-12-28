@@ -1,5 +1,8 @@
 slack:
   webhook: "{{ vault.slack.webhook }}"
+twitter:
+  vimdot:
+    twurl: "{{ vault.twitter.vimdot.twurl }}"
 mastodon:
   cympfh:
     server: "{{ vault.mastodon.cympfh.server }}"

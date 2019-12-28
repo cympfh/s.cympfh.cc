@@ -1,0 +1,4 @@
+- name: "cloning from git"
+  git:
+    repo: "{{ repo }}"
+    dest: /tmp/docker
