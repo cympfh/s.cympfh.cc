@@ -1,9 +1,19 @@
 FROM alpine:3.11
 
-RUN apk add bash curl jq
+# install packages
+RUN apk add --update bash curl jq coreutils
+
+# locale
+RUN apk --update add tzdata \
+ && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+ && apk del tzdata
+
+# cleaning
+RUN rm -rf /var/cache/apk/*
 
 WORKDIR /
-RUN wget https://github.com/cympfh/bin/archive/master.zip && unzip master.zip && rm master.zip
+ADD https://github.com/cympfh/bin/archive/master.zip master.zip
+RUN unzip master.zip && rm master.zip
 ENV PATH $PATH:/bin-master
 
 WORKDIR /app

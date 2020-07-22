@@ -11,7 +11,7 @@ post() {
   ICON=$2
   COLOR=$3
   shift 3
-  TEXT=$(echo "$@" | tr '\n' '\t' | sed 's/[\t ]*$//g; s/\t/\\n/g')
+  TEXT=$(echo "$@" | tr '\n' '\t' | tr -d '"' | sed 's/[\t ]*$//g; s/\t/\\n/g')
   PAYLOAD=$(mktemp)
   cat <<EOM >$PAYLOAD
 {
@@ -24,7 +24,7 @@ post() {
     {
       "title": "",
       "value": "${TEXT}",
-      "short": true
+      "short": false
     }
   ]
 }
@@ -35,12 +35,12 @@ EOM
 }
 
 post-tenki() {
-post tenki partly_sunny "#ff6060" "$(tenki)"
-post tenki partly_sunny "#ff6060" "$(tenki -f)"
+  post tenki partly_sunny "#ff6060" "$(tenki)"
+  post tenki partly_sunny "#ff6060" "$(tenki -f)"
 }
 
 post-anime() {
-post animetick tv "#44aa88" "$(animetick -D)"
+  post anical tv "#44aa88" "$(anical)"
 }
 
 work() {
