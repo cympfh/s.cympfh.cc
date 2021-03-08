@@ -1,4 +1,6 @@
 port: 8085
+twitter:
+  hidden_reply: true
 slack:
   channel: "#timeline"
   webhook: {{ slack.webhook }}
