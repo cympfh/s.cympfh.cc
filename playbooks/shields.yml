@@ -1,0 +1,13 @@
+---
+- hosts: deploy
+  vars:
+  - repo: https://github.com/cympfh/shields
+  - tag: shields
+  - full_command: >-
+      docker run -d --restart=always --name=shields
+        -p 8092:8092
+        shields
+        uvicorn main:app --port 8092 --host 0.0.0.0 --workers 2
+  roles:
+  - docker_build
+  - docker_deploy
