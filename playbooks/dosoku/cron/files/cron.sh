@@ -1,7 +1,8 @@
 #!/bin/bash
 
-wait-jiho() {
-  while [ "$(date "+%M")" -ne 0 ]; do
+# until next 10:00
+wait-morning() {
+  while [ "$(date "+%H:%M")" != "10:00" ]; do
     sleep 10
   done
 }
@@ -45,12 +46,12 @@ post-anime() {
 
 work() {
   post-tenki
-  post-anime
+  # post-anime
 }
 
 work
 while :; do
-  wait-jiho
+  wait-morning
   work
   date
   sleep 3000
