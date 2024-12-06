@@ -1,0 +1,10 @@
+---
+- hosts: deploy
+  vars:
+  - full_command: >-
+      docker run -d --restart=always --name=commafeed
+        -p 8082:8082
+        -v /home/cympfh/commafeed/data:/commafeed/data
+        athou/commafeed:latest
+  roles:
+  - docker_deploy
