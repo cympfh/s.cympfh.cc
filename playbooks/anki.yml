@@ -1,0 +1,16 @@
+---
+- hosts: deploy
+  vars:
+  - repo: https://github.com/cympfh/anki
+  - tag: anki
+  - full_command: >-
+      docker run -d -p 8094:8094 --restart=always --name={{ tag }}
+      {{ tag }}
+      streamlit run
+      --server.address 0.0.0.0
+      --server.port 8094
+      --server.baseUrlPath=/anki
+      anki.py
+  roles:
+  - docker_build
+  - docker_deploy
