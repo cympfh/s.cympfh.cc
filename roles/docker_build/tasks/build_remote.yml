@@ -1,4 +1,4 @@
 - name: "cloning from git"
   git:
     repo: "{{ repo }}"
-    dest: /tmp/docker
+    dest: /home/ubuntu/git/{{ tag }}

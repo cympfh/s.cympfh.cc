@@ -1,11 +1,11 @@
 - name: working directory
   file:
-    path: /tmp/docker
+    path: /home/ubuntu/git/{{ tag }}
     state: directory
     force: yes
 - name: copy files
   copy:
     src: "{{ item }}"
-    dest: "/tmp/docker/{{ item }}"
+    dest: "/home/ubuntu/git/{{ tag }}/{{ item }}"
     force: yes
   with_items: "{{ copy_files }}"

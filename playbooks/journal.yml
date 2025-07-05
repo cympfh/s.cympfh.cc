@@ -1,0 +1,16 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/journal.py
+    tag: journal
+    full_command: >-
+      docker run -d -p 8081:8000 --restart=always --name={{ tag }}
+      -v /home/ubuntu/git/{{ tag }}/data:/app/data
+      {{ tag }}
+      uv run fastapi run
+      --host 0.0.0.0
+      --port 8000
+      journal.py
+  roles:
+  - docker_build
+  - docker_deploy
