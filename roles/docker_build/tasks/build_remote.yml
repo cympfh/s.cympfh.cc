@@ -2,3 +2,5 @@
   git:
     repo: "{{ repo }}"
     dest: /home/ubuntu/git/{{ tag }}
+    update: yes
+    force: no
