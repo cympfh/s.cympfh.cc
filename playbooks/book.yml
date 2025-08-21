@@ -1,9 +1,9 @@
 ---
 - hosts: deploy
   vars:
-  - repo: https://github.com/cympfh/booklog-database
-  - tag: booklog-database
-  - full_command: >-
+    repo: https://github.com/cympfh/booklog-database
+    tag: booklog-database
+    full_command: >-
       docker run -d --restart=always --name=booklog-database
         -p 8084:8084
         booklog-database

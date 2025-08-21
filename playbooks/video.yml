@@ -1,12 +1,12 @@
 ---
 - hosts: deploy
   vars:
-  - repo: https://github.com/cympfh/video
-  - tag: video
-  - full_command: >-
+    repo: https://github.com/cympfh/video
+    tag: video
+    full_command: >-
       docker run -d -p 8095:8095 --restart=always --name={{ tag }}
       {{ tag }}
-      fastapi run
+      uv run fastapi run
       --host 0.0.0.0
       --port 8095
       video-server.py
