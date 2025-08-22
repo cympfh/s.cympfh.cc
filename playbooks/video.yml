@@ -5,6 +5,7 @@
     tag: video
     full_command: >-
       docker run -d -p 8095:8095 --restart=always --name={{ tag }}
+      --env YOUTUBE_API_KEY={{ youtube.api_key }}
       {{ tag }}
       uv run fastapi run
       --host 0.0.0.0

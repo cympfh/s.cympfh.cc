@@ -12,3 +12,5 @@ mastodon:
     server: "{{ vault.mastodon.eliza.server }}"
     accesstoken: "{{ vault.mastodon.eliza.accesstoken }}"
     usertoken: "{{ vault.mastodon.eliza.accesstoken }}"
+youtube:
+  api_key: "{{ vault.youtube.api_key }}"
