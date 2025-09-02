@@ -5,8 +5,12 @@
       - Dockerfile
       - nginx.conf
     tag: nginx
-    port_container: 80
-    port_host: 80
+    full_command: >-
+      docker run -d --restart=always --name=nginx
+        -p 80:80
+        -p 443:443
+        -v /opt/nginx-certs:/etc/nginx/certs:ro
+        nginx
   roles:
     - docker_build
     - docker_deploy
