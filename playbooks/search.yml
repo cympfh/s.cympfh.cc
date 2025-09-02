@@ -1,9 +1,9 @@
 ---
 - hosts: deploy
   vars:
-  - repo: https://github.com/cympfh/cympfh-search
-  - tag: cympfh-search
-  - full_command: >-
+    repo: https://github.com/cympfh/cympfh-search
+    tag: cympfh-search
+    full_command: >-
       docker run -d -p 8083:8083 --restart=always --name={{ tag }}
       --volume ~/git/cympfh.github.io/:/git/cympfh.github.io/
       {{ tag }}
