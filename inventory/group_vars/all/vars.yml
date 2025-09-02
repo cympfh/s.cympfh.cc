@@ -1,16 +1,2 @@
-slack:
-  webhook: "{{ vault.slack.webhook }}"
-twitter:
-  vimdot:
-    twurl: "{{ vault.twitter.vimdot.twurl }}"
-mastodon:
-  cympfh:
-    server: "{{ vault.mastodon.cympfh.server }}"
-    accesstoken: "{{ vault.mastodon.cympfh.accesstoken }}"
-    usertoken: "{{ vault.mastodon.cympfh.accesstoken }}"
-  eliza:
-    server: "{{ vault.mastodon.eliza.server }}"
-    accesstoken: "{{ vault.mastodon.eliza.accesstoken }}"
-    usertoken: "{{ vault.mastodon.eliza.accesstoken }}"
 youtube:
   api_key: "{{ vault.youtube.api_key }}"

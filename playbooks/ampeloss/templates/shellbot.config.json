@@ -1,7 +1,0 @@
-{
-    "mastodon": {
-        "server": "{{ mastodon.eliza.server }}",
-        "access_token": "{{ mastodon.eliza.usertoken }}"
-    },
-    "commands": ["echo", "date", "cal", "tenki"]
-}
