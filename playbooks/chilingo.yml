@@ -1,0 +1,17 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/chilingo
+    tag: chilingo
+    full_command: >-
+      docker run -d -p 8094:8094 --restart=always --name={{ tag }}
+      {{ tag }}
+      streamlit run
+      --server.address 0.0.0.0
+      --server.port 8094
+      --server.baseUrlPath=/chilingo
+      main.py
+  roles:
+  - docker_build
+  - docker_deploy
+# docker run -d -p 8094:8094 --restart=always --name=chilingo chilingo streamlit run --server.address 0.0.0.0 --server.port 8094 --server.baseUrlPath=/chilingo main.py
