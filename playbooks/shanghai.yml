@@ -1,0 +1,17 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/shanghai-2026
+    tag: shanghai
+    full_command: >-
+      docker run -d -p 8096:8096 --restart=always --name={{ tag }}
+      -e SHANGHAI_SECRET_KEY=your_secret_key
+      {{ tag }}
+      uv run streamlit run
+      --server.address 0.0.0.0
+      --server.port 8096
+      --server.baseUrlPath=/shanghai
+      streamlit_app.py
+  roles:
+  - docker_build
+  - docker_deploy
