@@ -1,2 +1,9 @@
 youtube:
   api_key: "{{ vault.youtube.api_key }}"
+
+eliza:
+  xai_api_key: "{{ vault.eliza.xai_api_key }}"
+  switchbot_api_token: "{{ vault.eliza.switchbot_api_token }}"
+  switchbot_api_secret: "{{ vault.eliza.switchbot_api_secret }}"
+  youtube_api_key: "{{ vault.eliza.youtube_api_key }}"
+  secret_key: "{{ vault.eliza.secret_key }}"

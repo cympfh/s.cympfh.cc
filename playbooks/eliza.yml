@@ -1,0 +1,20 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/eliza-agent-server
+    tag: eliza
+    full_command: >-
+      docker run -d
+        -p 8096:8096
+        -v $HOME/eliza-memory:/app/.memory
+        --restart=always
+        --name={{ tag }}
+        --env XAI_API_KEY={{ eliza.xai_api_key }}
+        --env SWITCHBOT_API_TOKEN={{ eliza.switchbot_api_token }}
+        --env SWITCHBOT_API_SECRET={{ eliza.switchbot_api_secret }}
+        --env YOUTUBE_API_KEY={{ eliza.youtube_api_key }}
+        --env ELIZA_SECRET_KEY={{ eliza.secret_key }}
+        {{ tag }}
+  roles:
+  - docker_build
+  - docker_deploy
