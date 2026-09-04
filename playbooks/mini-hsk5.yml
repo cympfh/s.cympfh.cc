@@ -1,0 +1,22 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/mini-hsk-5
+    tag: mini-hsk5
+    full_command: >-
+      docker run -d
+        -p 8097:8097
+        -v /home/ubuntu/mini-hsk5-data:/data
+        --restart=always
+        --name={{ tag }}
+        --env XAI_API_KEY={{ mini_hsk5.xai_api_key }}
+        {{ tag }}
+  pre_tasks:
+    - name: persist data dir
+      file:
+        path: /home/ubuntu/mini-hsk5-data
+        state: directory
+        mode: "0755"
+  roles:
+  - docker_build
+  - docker_deploy

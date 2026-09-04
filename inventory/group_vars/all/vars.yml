@@ -7,3 +7,6 @@ eliza:
   switchbot_api_secret: "{{ vault.eliza.switchbot_api_secret }}"
   youtube_api_key: "{{ vault.eliza.youtube_api_key }}"
   secret_key: "{{ vault.eliza.secret_key }}"
+
+mini_hsk5:
+  xai_api_key: "{{ vault.mini_hsk5.xai_api_key }}"

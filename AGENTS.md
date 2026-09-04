@@ -11,7 +11,7 @@ uv sync
 uv run ansible-playbook playbooks/<name>.yml
 ```
 
-vault が必要な playbook（`video.yml`, `eliza.yml`, `scroll.yml`）は `--ask-vault-pass` か `ANSIBLE_VAULT_PASSWORD_FILE`。
+vault が必要な playbook（`video.yml`, `eliza.yml`, `scroll.yml`, `mini-hsk5.yml`）は `--ask-vault-pass` か `ANSIBLE_VAULT_PASSWORD_FILE`。
 
 `ansible.cfg` の `hostfile = inventory` は現行 Ansible では `inventory` の旧名。inventory は `inventory/`。SSH は `ForwardAgent=yes`。
 
@@ -63,6 +63,7 @@ nginx (`playbooks/nginx/files/nginx.conf`) が 80 で path を各ポートへ。
 | `chilingo.yml` | chilingo | `/chilingo` | 8094 | cympfh/chilingo |
 | `video.yml` | video | `/video` | 8095 | cympfh/video |
 | `eliza.yml` | eliza | `/eliza` | 8096 | cympfh/eliza-agent-server |
+| `mini-hsk5.yml` | mini-hsk5 | `/mini-hsk5/` | 8097 | cympfh/mini-hsk-5 |
 | `scroll.yml` | scroll | なし（バッチ） | — | cympfh/tw-fav-scroll |
 | `nginx/main.yml` | nginx | 80/443 | — | `playbooks/nginx/files/` |
 
@@ -73,6 +74,7 @@ nginx に経路だけあって playbook が無いもの: `/anime` :8087, `/rss` 
 - `journal`: `-v /home/ubuntu/git/journal/data:/app/data`
 - `search`: `~/git/cympfh.github.io/` をマウント
 - `eliza`: `$HOME/eliza-memory:/app/.memory` と vault 由来の env
+- `mini-hsk5`: `/home/ubuntu/mini-hsk5-data:/data`（`HSK5_DATA_DIR`）。`XAI_API_KEY`（`mini_hsk5.xai_api_key` ← vault）。起動はイメージ CMD
 - `video`: `YOUTUBE_API_KEY`（`youtube.api_key` ← vault）。`/home/ubuntu/firefox/cookie.txt` を同パスで `:ro` bind（yt-dlp）
 - `scroll`: `~/scroll-out:/out`。`twitter.vimdot.twurl` を参照するが、`vars.yml` から twitter は削除済み。動かすなら vault 参照を戻す
 - `nginx`: `/opt/nginx-certs:/etc/nginx/certs:ro`
@@ -81,7 +83,7 @@ nginx に経路だけあって playbook が無いもの: `/anime` :8087, `/rss` 
 
 - `vault.yml` は暗号化のまま扱う。decrypt 結果をファイルに残さない。commit しない
 - 秘密は `vars.yml` 経由で `{{ vault.* }}` を参照する。playbook に直書きしない
-- 現行の vault 参照: `vault.youtube.api_key`, `vault.eliza.*`
+- 現行の vault 参照: `vault.youtube.api_key`, `vault.eliza.*`, `vault.mini_hsk5.xai_api_key`
 
 ## サービス追加
 
