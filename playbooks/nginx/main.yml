@@ -9,8 +9,20 @@
       docker run -d --restart=always --name=nginx
         -p 80:80
         -p 443:443
-        -v /opt/nginx-certs:/etc/nginx/certs:ro
+        -v /etc/letsencrypt:/etc/letsencrypt:ro
+        -v /var/www/certbot:/var/www/certbot:ro
         nginx
+  pre_tasks:
+    - name: certbot webroot
+      file:
+        path: /var/www/certbot
+        state: directory
+        mode: "0755"
+    - name: letsencrypt dir
+      file:
+        path: /etc/letsencrypt
+        state: directory
+        mode: "0755"
   roles:
     - docker_build
     - docker_deploy

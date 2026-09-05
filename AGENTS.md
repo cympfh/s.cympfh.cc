@@ -51,7 +51,7 @@ roles/screen_deploy/             # 未使用
 
 ## サービス
 
-nginx (`playbooks/nginx/files/nginx.conf`) が 80 で path を各ポートへ。443 は self-signed (`/opt/nginx-certs`) で同じホストの HTTP にプロキシ。
+nginx (`playbooks/nginx/files/nginx.conf`) が 80 で path を各ポートへ。443 は Let's Encrypt (`/etc/letsencrypt/live/s.cympfh.cc/`) で TLS 終端し、同一コンテナの :80 へプロキシ。ACME 用 webroot は `/var/www/certbot`。更新はホスト cron（certbot docker + `nginx -s reload`）。
 
 | playbook | tag | 公開 path | ポート | ソース |
 |---|---|---|---|---|
@@ -77,7 +77,7 @@ nginx に経路だけあって playbook が無いもの: `/anime` :8087, `/rss` 
 - `mini-hsk5`: `/home/ubuntu/mini-hsk5-data:/data`（`HSK5_DATA_DIR`）。`XAI_API_KEY`（`mini_hsk5.xai_api_key` ← vault）。起動はイメージ CMD
 - `video`: `YOUTUBE_API_KEY`（`youtube.api_key` ← vault）。`/home/ubuntu/firefox/cookie.txt` を同パスで `:ro` bind（yt-dlp）
 - `scroll`: `~/scroll-out:/out`。`twitter.vimdot.twurl` を参照するが、`vars.yml` から twitter は削除済み。動かすなら vault 参照を戻す
-- `nginx`: `/opt/nginx-certs:/etc/nginx/certs:ro`
+- `nginx`: `/etc/letsencrypt:/etc/letsencrypt:ro` と `/var/www/certbot:/var/www/certbot:ro`
 
 ## 秘密情報
 
