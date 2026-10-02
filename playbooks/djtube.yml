@@ -1,0 +1,15 @@
+---
+- hosts: deploy
+  vars:
+    repo: https://github.com/cympfh/djtube
+    tag: djtube
+    full_command: >-
+      docker run -d
+        -p 8098:8098
+        --restart=always
+        --name={{ tag }}
+        --env YOUTUBE_API_KEY={{ youtube.api_key }}
+        {{ tag }}
+  roles:
+  - docker_build
+  - docker_deploy
