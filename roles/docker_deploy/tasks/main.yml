@@ -1,5 +1,5 @@
 - name: stop container
-  shell: docker stop {{ tag }}
+  shell: docker stop -t 1 {{ tag }}
   ignore_errors: yes
 
 - name: rm container

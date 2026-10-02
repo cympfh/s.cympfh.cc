@@ -77,7 +77,7 @@ nginx に経路だけあって playbook が無いもの: `/anime` :8087, `/rss` 
 - `eliza`: `$HOME/eliza-memory:/app/.memory` と vault 由来の env
 - `mini-hsk5`: `/home/ubuntu/mini-hsk5-data:/data`（`HSK5_DATA_DIR`）。`XAI_API_KEY`（`mini_hsk5.xai_api_key` ← vault）。起動はイメージ CMD
 - `video`: `YOUTUBE_API_KEY`（`youtube.api_key` ← vault）。`/home/ubuntu/firefox/cookie.txt` を同パスで `:ro` bind（yt-dlp）
-- `djtube`: `YOUTUBE_API_KEY`（`youtube.api_key` ← vault）。起動はイメージ CMD（8098）
+- `djtube`: `YOUTUBE_API_KEY`（`youtube.api_key` ← vault）。`/app/data` は名前付き volume `djtube-data`。起動はイメージ CMD（8098）
 - `scroll`: `~/scroll-out:/out`。`twitter.vimdot.twurl` を参照するが、`vars.yml` から twitter は削除済み。動かすなら vault 参照を戻す
 - `nginx`: `/etc/letsencrypt:/etc/letsencrypt:ro` と `/var/www/certbot:/var/www/certbot:ro`
 
