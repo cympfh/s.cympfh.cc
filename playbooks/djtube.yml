@@ -5,7 +5,8 @@
     tag: djtube
     full_command: >-
       docker run -d
-        -p 8098:8098
+        -p 127.0.0.1:8098:8098
+        -p 172.17.0.1:8098:8098
         --restart=always
         --name={{ tag }}
         -v djtube-data:/app/data
