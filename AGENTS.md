@@ -13,9 +13,9 @@ uv run ansible-playbook playbooks/<name>.yml
 
 vault が必要な playbook（`video.yml`, `eliza.yml`, `scroll.yml`, `mini-hsk5.yml`, `djtube.yml`）は `--ask-vault-pass` か `ANSIBLE_VAULT_PASSWORD_FILE`。
 
-`ansible.cfg` の `hostfile = inventory` は現行 Ansible では `inventory` の旧名。inventory は `inventory/`。SSH は `ForwardAgent=yes`。
+`ansible.cfg` は `inventory = inventory`（旧名 `hostfile` は現行 Ansible では無視される）。inventory は `inventory/`。SSH は `ForwardAgent=yes`。
 
-Python は `.python-version` の 3.12。依存は `pyproject.toml` の ansible のみ。
+Python は `.python-version` の 3.12。依存は `pyproject.toml` の ansible のみ。動作確認は ansible 11.7.0（ansible-core 2.18）。
 
 ## ディレクトリ
 
